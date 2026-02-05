@@ -21,4 +21,12 @@ const Node = struct {
     box: Box,
 };
 
-pub const BoundingVolumeHierarchy = struct {};
+pub const BoundingVolumeHierarchy = struct {
+    const Self = @This();
+
+    root: ?*Node,
+
+    pub fn init(allocator: std.mem.Allocator, triangles: []const Triangle, max_depth: usize) !Self {}
+
+    pub fn initHelper(allocator: std.mem.Allocator, triangles: []const Triangle, depth: usize, max_depth: usize) !Node {}
+};
