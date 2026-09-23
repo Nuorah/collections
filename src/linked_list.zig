@@ -66,6 +66,18 @@ pub const LinkedList = struct {
             std.debug.print("Null node\n", .{});
         }
     }
+
+    pub fn remove(self: Self, entry: *Node) void {
+        var indirect: *?*Node = &self.head;
+
+        while (indirect.*) |node| {
+            if(node == entry) {
+                indirect.* = entry.next;
+                return;
+            }
+            indirect = &node.next;
+        }
+    }
 };
 
 test "init and deinit empty list" {
